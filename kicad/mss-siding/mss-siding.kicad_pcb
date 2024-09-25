@@ -495,10 +495,10 @@
       (net 2 "GND") (pinfunction "MountPin") (pintype "passive") (tstamp 963e0840-5b0a-4c0f-a714-6233535fb79d))
     (pad "MP" smd roundrect (at -2.8 1.875 90) (size 1.2 1.8) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.208333)
       (net 2 "GND") (pinfunction "MountPin") (pintype "passive") (tstamp ea83a508-94ff-4f9f-a2b0-b9c8d8c9fd69))
-    (model "${KICAD6_3DMODEL_DIR}/Connector_JST.3dshapes/JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal.wrl"
-      (offset (xyz 0 0 0))
+    (model ":ISE_3DModels:SM04B-SRSS-TB.STEP"
+      (offset (xyz 0 1.27 -0.381))
       (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
+      (rotate (xyz -90 0 0))
     )
   )
 
@@ -603,6 +603,11 @@
       (net 3 "+5V") (pinfunction "1") (pintype "input") (zone_connect 2) (tstamp d1e7786d-8ac0-419d-a680-cad8dfd4bc0f))
     (pad "2" smd rect (at 2.2987 0 270) (size 2.1082 5.5626) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 6 "Net-(C2-Pad1)") (pinfunction "2") (pintype "input") (tstamp 97e55863-9a37-4540-962e-cf8de09e6fc0))
+    (model "/home/ndholmes/data/projects/ise-kicad/3DModels/Coilcraft-MSS6132.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 -90))
+    )
   )
 
   (footprint "Package_SO:SO-16_3.9x9.9mm_P1.27mm" (layer "F.Cu")
@@ -669,7 +674,7 @@
     (pad "15" smd roundrect (at 2.575 -3.175) (size 1.75 0.6) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
       (net 95 "Net-(U4-Pad15)") (pintype "output") (tstamp 4ec05dfc-5c47-4296-95bf-80f20345f019))
     (pad "16" smd roundrect (at 2.575 -4.445) (size 1.75 0.6) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25) (tstamp 1247d15c-4e7a-49c3-ae74-e2844be6f114))
-    (model "${KICAD6_3DMODEL_DIR}/Package_SO.3dshapes/SO-16_3.9x9.9mm_P1.27mm.wrl"
+    (model "${KICAD6_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-16_3.9x9.9mm_P1.27mm.step"
       (offset (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
@@ -786,8 +791,8 @@
       (net 59 "Net-(J10-Pad2)") (pinfunction "Pin_2") (pintype "passive") (tstamp e2492dfd-58b1-446e-bfcd-e05882910be0))
     (pad "3" thru_hole circle (at 7 0 270) (size 2.3 2.3) (drill 1.2) (layers *.Cu *.Mask)
       (net 60 "Net-(J10-Pad3)") (pinfunction "Pin_3") (pintype "passive") (tstamp 17c9b814-9506-447e-a5d9-36c92d1d016b))
-    (model "${KICAD6_3DMODEL_DIR}/TerminalBlock_MetzConnect.3dshapes/TerminalBlock_MetzConnect_Type059_RT06303HBWC_1x03_P3.50mm_Horizontal.wrl"
-      (offset (xyz 0 0 0))
+    (model ":ISE_3DModels:Terminal_Block_3Pos_3.5mm.step"
+      (offset (xyz -1.905 -3.683 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
@@ -918,8 +923,8 @@
       (net 30 "Net-(J1-Pad1)") (pinfunction "Pin_2") (pintype "passive") (tstamp 8cf09043-5c06-46ef-a06b-c4fd2532f959))
     (pad "3" thru_hole circle (at 7 0 270) (size 2.3 2.3) (drill 1.2) (layers *.Cu *.Mask)
       (net 31 "Net-(J1-Pad2)") (pinfunction "Pin_3") (pintype "passive") (tstamp 801dc402-8356-424e-8773-d058b53c46f1))
-    (model "${KICAD6_3DMODEL_DIR}/TerminalBlock_MetzConnect.3dshapes/TerminalBlock_MetzConnect_Type059_RT06303HBWC_1x03_P3.50mm_Horizontal.wrl"
-      (offset (xyz 0 0 0))
+    (model ":ISE_3DModels:Terminal_Block_3Pos_3.5mm.step"
+      (offset (xyz -1.905 -3.683 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
@@ -1753,6 +1758,11 @@
       (net 93 "Net-(K1-Pad4)") (pinfunction "B") (pintype "passive") (tstamp f06909e9-7aef-4660-b781-131c415e8c54))
     (pad "6" smd rect (at 2.7559 2.5 270) (size 2.4892 1.1938) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 2 "GND") (pinfunction "C") (pintype "passive") (tstamp 14a5e885-b92e-4ae6-9d32-8c69190e24cf))
+    (model ":ISE_3DModels:JS202011SCQN.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 90))
+    )
   )
 
   (footprint "Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal" (layer "F.Cu")
@@ -1810,10 +1820,10 @@
       (net 55 "Net-(J8-Pad7)") (pintype "passive") (tstamp 78b4a9ff-c72c-4baa-a2b9-7c9b03155eb6))
     (pad "8" thru_hole circle (at 8.89 -2.54) (size 1.5 1.5) (drill 0.76) (layers *.Cu *.Mask)
       (net 56 "unconnected-(J8-Pad8)") (pintype "passive") (tstamp 56a08a1c-6afd-4b87-bab1-09ceb749dbd3))
-    (model "${KICAD6_3DMODEL_DIR}/Connector_RJ.3dshapes/RJ45_Amphenol_54602-x08_Horizontal.wrl"
-      (offset (xyz 0 0 0))
+    (model ":ISE_3DModels:RJ45_Amphenol_54602-908LF.step"
+      (offset (xyz 4.445 -6.35 0))
       (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
+      (rotate (xyz -90 0 0))
     )
   )
 
@@ -1976,8 +1986,8 @@
       (net 33 "Net-(J1-Pad4)") (pinfunction "Pin_2") (pintype "passive") (tstamp a4f937c2-93fc-4b50-bd78-a184e7b3a51b))
     (pad "3" thru_hole circle (at 7 0 270) (size 2.3 2.3) (drill 1.2) (layers *.Cu *.Mask)
       (net 33 "Net-(J1-Pad4)") (pinfunction "Pin_3") (pintype "passive") (tstamp d3e24b46-5b1f-4334-b86a-c7a100937666))
-    (model "${KICAD6_3DMODEL_DIR}/TerminalBlock_MetzConnect.3dshapes/TerminalBlock_MetzConnect_Type059_RT06303HBWC_1x03_P3.50mm_Horizontal.wrl"
-      (offset (xyz 0 0 0))
+    (model ":ISE_3DModels:Terminal_Block_3Pos_3.5mm.step"
+      (offset (xyz -1.905 -3.683 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
@@ -2272,6 +2282,11 @@
       (net 53 "/MAIN_AA_OUT") (pintype "passive") (tstamp 72911c26-12fd-4814-9403-8e124a6592c2))
     (pad "8" smd rect (at 3.5941 -3.9497 270) (size 2.66 0.8) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 79 "Net-(K1-Pad8)") (pintype "passive") (tstamp e774188b-165b-4950-a3ef-42ee20f72ed8))
+    (model "/home/ndholmes/data/projects/ise-kicad/3DModels/AGQ200A4HZ.stp"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 90))
+    )
   )
 
   (footprint "TerminalBlock_MetzConnect:TerminalBlock_MetzConnect_Type059_RT06303HBWC_1x03_P3.50mm_Horizontal" (layer "F.Cu")
@@ -2342,8 +2357,8 @@
       (net 57 "Net-(J11-Pad1)") (pinfunction "Pin_2") (pintype "passive") (tstamp 5585b039-ad47-43f1-b2e9-edca917f387c))
     (pad "3" thru_hole circle (at 7 0 270) (size 2.3 2.3) (drill 1.2) (layers *.Cu *.Mask)
       (net 58 "Net-(J11-Pad2)") (pinfunction "Pin_3") (pintype "passive") (tstamp f8c1415a-8dad-4854-ae75-8a52678523c1))
-    (model "${KICAD6_3DMODEL_DIR}/TerminalBlock_MetzConnect.3dshapes/TerminalBlock_MetzConnect_Type059_RT06303HBWC_1x03_P3.50mm_Horizontal.wrl"
-      (offset (xyz 0 0 0))
+    (model ":ISE_3DModels:Terminal_Block_3Pos_3.5mm.step"
+      (offset (xyz -1.905 -3.683 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
@@ -2438,6 +2453,11 @@
       (net 54 "/MAIN_A_OUT") (pintype "passive") (tstamp 167dd0b5-5b84-449f-a706-1beb58680c91))
     (pad "8" smd rect (at 3.5941 -3.9497 270) (size 2.66 0.8) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 79 "Net-(K1-Pad8)") (pintype "passive") (tstamp d3fadcef-c1bb-46da-b6d4-f92bb90e4742))
+    (model "/home/ndholmes/data/projects/ise-kicad/3DModels/AGQ200A4HZ.stp"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 90))
+    )
   )
 
   (footprint "ISE_UltraLibrarian:RELAY_AGQ_A_PAN" (layer "F.Cu")
@@ -2529,6 +2549,11 @@
       (net 25 "/MAIN_S") (pintype "passive") (tstamp 92225554-eee2-4918-827c-f16ce04b23b4))
     (pad "8" smd rect (at 3.5941 -3.9497 270) (size 2.66 0.8) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 79 "Net-(K1-Pad8)") (pintype "passive") (tstamp dca51f41-b34d-4b98-9ede-ca0d1b915150))
+    (model "/home/ndholmes/data/projects/ise-kicad/3DModels/AGQ200A4HZ.stp"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 90))
+    )
   )
 
   (footprint "Resistor_SMD:R_0805_2012Metric" (layer "F.Cu")
@@ -2670,10 +2695,10 @@
       (net 46 "Net-(J4-Pad7)") (pintype "passive") (tstamp 40034f68-fd96-47ab-a88c-616bedddd965))
     (pad "8" thru_hole circle (at 8.89 -2.54) (size 1.5 1.5) (drill 0.76) (layers *.Cu *.Mask)
       (net 47 "unconnected-(J4-Pad8)") (pintype "passive") (tstamp d4c216ed-2933-4ae6-9c20-e1ab8ba02693))
-    (model "${KICAD6_3DMODEL_DIR}/Connector_RJ.3dshapes/RJ45_Amphenol_54602-x08_Horizontal.wrl"
-      (offset (xyz 0 0 0))
+    (model ":ISE_3DModels:RJ45_Amphenol_54602-908LF.step"
+      (offset (xyz 4.445 -6.35 0))
       (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
+      (rotate (xyz -90 0 0))
     )
   )
 
@@ -2882,7 +2907,7 @@
     (pad "15" smd roundrect (at 2.575 -3.175) (size 1.75 0.6) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
       (net 86 "Net-(U3-Pad15)") (pintype "output") (tstamp 6f1596c6-5305-4929-b4b6-3d223ceb086e))
     (pad "16" smd roundrect (at 2.575 -4.445) (size 1.75 0.6) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25) (tstamp 45d966d9-1d0f-480a-82aa-d96060dbf77b))
-    (model "${KICAD6_3DMODEL_DIR}/Package_SO.3dshapes/SO-16_3.9x9.9mm_P1.27mm.wrl"
+    (model "${KICAD6_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-16_3.9x9.9mm_P1.27mm.step"
       (offset (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
@@ -3034,6 +3059,11 @@
       (net 33 "Net-(J1-Pad4)") (pinfunction "B") (pintype "passive") (tstamp 99980311-14fa-4588-b0d5-e85797de5880))
     (pad "6" smd rect (at 2.7559 2.5 180) (size 2.4892 1.1938) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 2 "GND") (pinfunction "C") (pintype "passive") (tstamp 7dc2b18d-fbe4-4aef-90cf-88a038b12bc4))
+    (model ":ISE_3DModels:JS202011SCQN.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 90))
+    )
   )
 
   (footprint "Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm" (layer "F.Cu")
@@ -3507,6 +3537,11 @@
       (net 35 "Net-(J2-Pad2)") (pinfunction "Pin_3") (pintype "passive") (tstamp aa0fe2dc-05ee-4537-b5ca-d374386c965d))
     (model "${KICAD6_3DMODEL_DIR}/TerminalBlock_MetzConnect.3dshapes/TerminalBlock_MetzConnect_Type059_RT06303HBWC_1x03_P3.50mm_Horizontal.wrl"
       (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
+    (model ":ISE_3DModels:Terminal_Block_3Pos_3.5mm.step"
+      (offset (xyz -1.905 -3.683 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
@@ -4027,8 +4062,8 @@
       (net 69 "/TO_NORMAL") (pinfunction "Pin_2") (pintype "passive") (tstamp 2fe5cba7-f12c-470a-bbcd-90ca853c9339))
     (pad "3" thru_hole circle (at 7 0) (size 2.3 2.3) (drill 1.2) (layers *.Cu *.Mask)
       (net 3 "+5V") (pinfunction "Pin_3") (pintype "passive") (tstamp 54b7d295-effb-4830-be00-e10ba0d99451))
-    (model "${KICAD6_3DMODEL_DIR}/TerminalBlock_MetzConnect.3dshapes/TerminalBlock_MetzConnect_Type059_RT06303HBWC_1x03_P3.50mm_Horizontal.wrl"
-      (offset (xyz 0 0 0))
+    (model ":ISE_3DModels:Terminal_Block_3Pos_3.5mm.step"
+      (offset (xyz -1.905 -3.683 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
@@ -4125,10 +4160,10 @@
       (net 2 "GND") (pinfunction "MountPin") (pintype "passive") (tstamp 1aeb56c7-864c-4b6b-9060-85829f3fe1b3))
     (pad "MP" smd roundrect (at 2.8 1.875 90) (size 1.2 1.8) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.208333)
       (net 2 "GND") (pinfunction "MountPin") (pintype "passive") (tstamp ead1d02e-b863-440f-9348-6db70f9ebe65))
-    (model "${KICAD6_3DMODEL_DIR}/Connector_JST.3dshapes/JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal.wrl"
-      (offset (xyz 0 0 0))
+    (model ":ISE_3DModels:SM04B-SRSS-TB.STEP"
+      (offset (xyz 0 1.27 -0.381))
       (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
+      (rotate (xyz -90 0 0))
     )
   )
 
@@ -5426,10 +5461,10 @@
       (net 63 "Net-(J13-Pad7)") (pintype "passive") (tstamp 34a059e7-9f50-4ca8-974c-ff8bdf9b2738))
     (pad "8" thru_hole circle (at 8.89 -2.54 180) (size 1.5 1.5) (drill 0.76) (layers *.Cu *.Mask)
       (net 64 "/POINTS_DA_OUT") (pintype "passive") (tstamp 559afb40-2398-4727-bc4f-ec05431f33e7))
-    (model "${KICAD6_3DMODEL_DIR}/Connector_RJ.3dshapes/RJ45_Amphenol_54602-x08_Horizontal.wrl"
-      (offset (xyz 0 0 0))
+    (model ":ISE_3DModels:RJ45_Amphenol_54602-908LF.step"
+      (offset (xyz 4.445 -6.35 0))
       (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
+      (rotate (xyz -90 0 0))
     )
   )
 
@@ -5539,10 +5574,10 @@
       (net 2 "GND") (pinfunction "MountPin") (pintype "passive") (tstamp 0f94a28d-cf2a-4bc7-9756-cada9025139e))
     (pad "MP" smd roundrect (at -2.8 1.875 90) (size 1.2 1.8) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.208333)
       (net 2 "GND") (pinfunction "MountPin") (pintype "passive") (tstamp 7c4e9b2f-2f2e-4a4c-8684-80658833825b))
-    (model "${KICAD6_3DMODEL_DIR}/Connector_JST.3dshapes/JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal.wrl"
-      (offset (xyz 0 0 0))
+    (model ":ISE_3DModels:SM04B-SRSS-TB.STEP"
+      (offset (xyz 0 1.27 -0.381))
       (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
+      (rotate (xyz -90 0 0))
     )
   )
 
@@ -6503,10 +6538,10 @@
       (net 2 "GND") (pinfunction "MountPin") (pintype "passive") (tstamp 8f96f6b3-d9e9-4914-bfe0-3b9f9157fcbb))
     (pad "MP" smd roundrect (at 2.8 1.875 90) (size 1.2 1.8) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.208333)
       (net 2 "GND") (pinfunction "MountPin") (pintype "passive") (tstamp e2f25125-9005-4d77-9da9-2d9ee3f8c07f))
-    (model "${KICAD6_3DMODEL_DIR}/Connector_JST.3dshapes/JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal.wrl"
-      (offset (xyz 0 0 0))
+    (model ":ISE_3DModels:SM04B-SRSS-TB.STEP"
+      (offset (xyz 0 1.27 -0.381))
       (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
+      (rotate (xyz -90 0 0))
     )
   )
 
@@ -6855,6 +6890,11 @@
       (net 3 "+5V") (pinfunction "1") (pintype "input") (zone_connect 2) (tstamp 0d073514-37c1-4fc7-8640-65bdce81c65b))
     (pad "2" smd rect (at 2.2987 0) (size 2.1082 5.5626) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 18 "Net-(D9-Pad2)") (pinfunction "2") (pintype "input") (tstamp 90c60ded-9010-47ff-b3fa-3d5e6cf88fbc))
+    (model "/home/ndholmes/data/projects/ise-kicad/3DModels/Coilcraft-MSS6132.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 -90))
+    )
   )
 
   (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" (layer "F.Cu")
