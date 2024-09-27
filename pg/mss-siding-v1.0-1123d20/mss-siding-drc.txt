@@ -1,0 +1,10 @@
+** Drc report for /home/ndholmes/data/projects/mss-siding/kicad/mss-siding/mss-siding.kicad_pcb **
+** Created on 2024-09-27 11:47:26 **
+
+** Found 0 DRC violations **
+
+** Found 0 unconnected pads **
+
+** Found 0 Footprint errors **
+
+** End of Report **
