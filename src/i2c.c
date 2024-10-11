@@ -1,3 +1,25 @@
+/*************************************************************************
+Title:    Big-Bang I2C Library
+Authors:  Michael Petersen <railfan@drgw.net>
+          Nathan D. Holmes <maverick@drgw.net>
+File:     i2c.h
+License:  GNU General Public License v3
+
+LICENSE:
+    Copyright (C) 2024 Michael Petersen & Nathan Holmes
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+*************************************************************************/
+
 #include "i2c.h"
 
 static inline void sda_low() { DDRA |= _BV(SDA); PORTA &= ~_BV(SDA); _delay_us(10); }
@@ -57,13 +79,13 @@ uint8_t i2cWriteByte(uint8_t byte)
 
 uint8_t i2cReadByte(uint8_t ack)
 {
-	uint8_t i, data = 0;
+	uint8_t i=0, data = 0;
 
 	for(i=0; i<8; i++)
 	{
-		data = data << 1;
+		data<<=1;
 		scl_high();
-		if(PINA & _BV(SDA))
+		if (PINA & _BV(SDA))
 			data |= 0x01;
 		scl_low();
 	}

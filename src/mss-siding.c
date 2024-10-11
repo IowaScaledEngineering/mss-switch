@@ -31,11 +31,19 @@ LICENSE:
 #include <stdint.h>
 
 #include "debouncer.h"
-#include "optionSwitches.h"
 #include "signalHead.h"
 #include "mss.h"
 #include "i2c.h"
 #include "light_ws2812.h"
+
+#define OPTION_COMMON_ANODE          0x01
+#define OPTION_A_APPROACH_LIGHTING   0x02
+#define OPTION_B_FOUR_ASPECT         0x04
+#define OPTION_C_SEARCHLIGHT_MODE    0x08
+#define OPTION_D_LIMIT_DIVERGING     0x10
+#define OPTION_E_RESERVED            0x20
+
+
 typedef enum
 {
 	STATUS_RED,
@@ -208,7 +216,7 @@ int main(void)
 	DebounceState8_t mssDebouncer;
 	uint32_t lastReadTime = 0;
 	uint32_t currentTime = 0;
-	uint8_t q=0;
+	
 	// Deal with watchdog first thing
 	MCUSR = 0;              // Clear reset status
 	wdt_reset();            // Reset the WDT, just in case it's still enabled over reset
@@ -241,8 +249,8 @@ int main(void)
 	DDRB  = 0b01111111;
 
 	initializeTimer();
-	initializeOptions(&optionsDebouncer);
-	initializeOptions(&mssDebouncer);
+	initDebounceState8(&optionsDebouncer, 0);
+	initDebounceState8(&mssDebouncer, 0);
 
 	signalHeadInitialize(&signalAU);
 	signalHeadInitialize(&signalAL);
@@ -270,11 +278,20 @@ int main(void)
 #define MSS_MAIN_AA_IN        0x80
 #define MSS_TO_IS_DIVERGING   0x40
 #define MSS_POINTS_S          0x20
-#define MSS_POINTS_A_IN       0x10
-#define MSS_POINTS_A_OUT      0x08
+#define MSS_POINTS_A_OUT      0x10
+#define MSS_POINTS_A_IN       0x08
 #define MSS_POINTS_AA_IN      0x04
 #define MSS_POINTS_AA_OUT     0x02
 #define MSS_SIDING_AA_IN      0x01
+
+#define OPTION_COMMON_ANODE          0x01
+#define OPTION_A_APPROACH_LIGHTING   0x02
+#define OPTION_B_FOUR_ASPECT         0x04
+#define OPTION_C_SEARCHLIGHT_MODE    0x08
+#define OPTION_D_LIMIT_DIVERGING     0x10
+#define OPTION_E_RESERVED            0x20
+#define MSS_SET_FORCE_POINTS_AA      0x40
+#define MSS_SET_ROUTE_RELAY          0x80
 
 
 	// TCA9555 - GPIO 0
@@ -311,10 +328,9 @@ int main(void)
 		// Because debouncing and such is built into option reading and the MSS library, only 
 		//  run the updates every 10mS or so.
 
-		if (((uint32_t)currentTime - lastReadTime) > 10)
+		if (((uint32_t)currentTime - lastReadTime) > 50)
 		{
 			uint8_t optionJumpers = 0;
-			uint8_t mssOptions = 0;
 			uint8_t ack = 0;
 			uint8_t i = 0;
 
@@ -325,18 +341,6 @@ int main(void)
 
 			lastReadTime = currentTime;
 
-			if (++q>100)
-			{
-				signalHeadAspectSet(&signalAU, ASPECT_RED);
-			}
-			else
-			{
-				signalHeadAspectSet(&signalAU, ASPECT_GREEN);
-			}
-
-			if (q>=200)
-				q = 0;
-
 			// Read PCA9555
 			ack = readByte(TCA9555_ADDR_000, TCA9555_GPIN0, &i);
 			if (ack)
@@ -346,10 +350,8 @@ int main(void)
 			if (ack)
 				debounce8(i, &mssDebouncer);
 
-			setStatusLED((i==0)?STATUS_GREEN:STATUS_RED);
-
 			optionJumpers = getDebouncedState(&optionsDebouncer);
-			optionJumpers |= OPTION_B_FOUR_ASPECT | OPTION_COMMON_ANODE | OPTION_C_SEARCHLIGHT_MODE;
+			optionJumpers |= OPTION_B_FOUR_ASPECT | OPTION_C_SEARCHLIGHT_MODE | OPTION_D_LIMIT_DIVERGING | OPTION_A_APPROACH_LIGHTING;
 
 			// Convert global option bits to signal head option bits
 			if (optionJumpers & OPTION_C_SEARCHLIGHT_MODE)
@@ -362,66 +364,74 @@ int main(void)
 			else 
 				signalHeadOptions &= ~SIGNAL_OPTION_COMMON_ANODE;
 
-			// Convert global option bits to MSS option bits
-			if (optionJumpers & OPTION_A_APPROACH_LIGHTING)
-				mssOptions |= MSS_ASPECT_OPTION_APPRCH_LIGHTING;
-
-			if (optionJumpers & OPTION_B_FOUR_ASPECT)
-				mssOptions |= MSS_ASPECT_OPTION_FOUR_INDICATION;
-
-
 			// Read state of MSS bus ports coming in
 			i = getDebouncedState(&mssDebouncer);
+
+			{
+				uint8_t updateOutputs = 0;
+				if (i & MSS_TO_IS_DIVERGING)
+					updateOutputs |= MSS_SET_ROUTE_RELAY;
+
+				if ((optionJumpers & OPTION_D_LIMIT_DIVERGING)
+					&& (i & MSS_TO_IS_DIVERGING) && !(i & MSS_POINTS_A_OUT) )
+					updateOutputs |= MSS_SET_FORCE_POINTS_AA;
+					
+				writeByte(TCA9555_ADDR_000, TCA9555_GPOUT0, updateOutputs);
+			}
+
+
+			// Calculate signal aspects directly, since we don't have neatly-terminated
+			//  MSS busses but rather have to glean states from combinations of things.
 
 			if ((i & MSS_POINTS_S) || (i & MSS_TO_IS_DIVERGING))
 				aspectB = ASPECT_RED;
 			else if (i & MSS_POINTS_A_IN)
 				aspectB = ASPECT_YELLOW;
-			else if ((i & MSS_POINTS_AA_IN) && (mssOptions & MSS_ASPECT_OPTION_FOUR_INDICATION))
+			else if ((i & MSS_POINTS_AA_IN) && (optionJumpers & OPTION_B_FOUR_ASPECT))
 				aspectB = ASPECT_FL_YELLOW;
 			else
 				aspectB = ASPECT_GREEN;
-
 
 			if (i & MSS_POINTS_S || !(i & MSS_TO_IS_DIVERGING))
 				aspectC = ASPECT_RED;
 			else if (i & MSS_POINTS_A_IN)
 				aspectC = ASPECT_YELLOW;
-			else if ((i & MSS_POINTS_AA_IN) && (mssOptions & MSS_ASPECT_OPTION_FOUR_INDICATION))
+			else if ((i & MSS_POINTS_AA_IN) && (optionJumpers & OPTION_B_FOUR_ASPECT))
 				aspectC = ASPECT_FL_YELLOW;
 			else
 				aspectC = ASPECT_GREEN;
 
-
-			if (i && MSS_TO_IS_DIVERGING)
+			if (i & MSS_TO_IS_DIVERGING)
 			{
+				// Diverging point end signals
 				aspectAU = ASPECT_RED;
 			
 				if (i & MSS_POINTS_A_OUT)
 					aspectAL = ASPECT_RED;
-				else if (i & MSS_POINTS_AA_OUT)
+				else if ((i & MSS_POINTS_AA_OUT) || (optionJumpers & OPTION_D_LIMIT_DIVERGING))
 					aspectAL = ASPECT_YELLOW;
-				else if ((i && MSS_SIDING_AA_IN) && (mssOptions & MSS_ASPECT_OPTION_FOUR_INDICATION))
+				else if ((i & MSS_SIDING_AA_IN) && (optionJumpers & OPTION_B_FOUR_ASPECT))
 					aspectAL = ASPECT_FL_YELLOW;
 				else
 					aspectAL = ASPECT_GREEN;
 
 			} else {
 				aspectAL = ASPECT_RED;
+
 				if (i & MSS_POINTS_A_OUT)
 					aspectAU = ASPECT_RED;
-				else if ((i & MSS_POINTS_AA_OUT) && (mssOptions & MSS_ASPECT_OPTION_FOUR_INDICATION))
+				else if ((i & MSS_POINTS_AA_OUT) && (optionJumpers & OPTION_B_FOUR_ASPECT))
 					aspectAU = ASPECT_YELLOW;
 				else if (i & MSS_MAIN_AA_IN)
 					aspectAU = ASPECT_FL_YELLOW;
 				else
 					aspectAU = ASPECT_GREEN;
 			}
-/*
+
 			signalHeadAspectSet(&signalAU, aspectAU);
 			signalHeadAspectSet(&signalAL, aspectAL);
 			signalHeadAspectSet(&signalB, aspectB);
-			signalHeadAspectSet(&signalC, aspectC);*/
+			signalHeadAspectSet(&signalC, aspectC);
 		}
 	}
 }
