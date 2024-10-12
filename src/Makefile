@@ -38,8 +38,8 @@ PROGRAMMER_TYPE=iseavrprog
 PROGRAMMER_PORT=usb
 
 DEFINES = 
-SRCS = $(BASE_NAME).c debouncer.c signalHead.c mss.c i2c.c light_ws2812.c
-INCS = debouncer.h signalHead.h signalHeadPWM.h mss.h i2c.h light_ws2812.h ws2812_config.h
+SRCS = $(BASE_NAME).c debouncer.c signalHead.c mss.c i2c.c
+INCS = debouncer.h signalHead.h signalHeadPWM.h mss.h i2c.h
 
 AVRDUDE = avrdude -P $(PROGRAMMER_PORT) -c $(PROGRAMMER_TYPE) -p $(DEVICE) -B2 -F
 AVRDUDE_SLOW = avrdude -P $(PROGRAMMER_PORT) -c $(PROGRAMMER_TYPE) -p $(DEVICE) -B32
