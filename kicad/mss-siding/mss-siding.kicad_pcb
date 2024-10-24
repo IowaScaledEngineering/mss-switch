@@ -1758,10 +1758,10 @@
       (net 55 "Net-(J8-Pad7)") (pintype "passive") (tstamp 623de58a-fd92-43b3-922e-cb0639ec2845))
     (pad "8" thru_hole circle (at 8.89 -2.54) (size 1.5 1.5) (drill 0.76) (layers *.Cu *.Mask)
       (net 56 "unconnected-(J8-Pad8)") (pintype "passive") (tstamp a3b11623-525e-49f0-a575-4b0d0db62a58))
-    (model "${KICAD6_3DMODEL_DIR}/Connector_RJ.3dshapes/RJ45_Amphenol_54602-x08_Horizontal.wrl"
-      (offset (xyz 0 0 0))
+    (model "/home/ndholmes/data/projects/ise-kicad/3DModels/RJ45_Amphenol_54602-908LF.step"
+      (offset (xyz 4.445 -6.35 0))
       (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
+      (rotate (xyz -90 0 0))
     )
   )
 
@@ -2685,10 +2685,10 @@
       (net 46 "Net-(J4-Pad7)") (pintype "passive") (tstamp b7f8f5c8-a83f-4bd0-af60-f2f0f7867ef4))
     (pad "8" thru_hole circle (at 8.89 -2.54) (size 1.5 1.5) (drill 0.76) (layers *.Cu *.Mask)
       (net 47 "unconnected-(J4-Pad8)") (pintype "passive") (tstamp b3b08176-13e1-4430-80d2-2c1f73234da9))
-    (model "${KICAD6_3DMODEL_DIR}/Connector_RJ.3dshapes/RJ45_Amphenol_54602-x08_Horizontal.wrl"
-      (offset (xyz 0 0 0))
+    (model "/home/ndholmes/data/projects/ise-kicad/3DModels/RJ45_Amphenol_54602-908LF.step"
+      (offset (xyz 4.445 -6.35 0))
       (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
+      (rotate (xyz -90 0 0))
     )
   )
 
@@ -5513,10 +5513,10 @@
       (net 63 "Net-(J13-Pad7)") (pintype "passive") (tstamp 6410b8e8-8f4b-416f-a03a-10d8f891b206))
     (pad "8" thru_hole circle (at 8.89 -2.54 180) (size 1.5 1.5) (drill 0.76) (layers *.Cu *.Mask)
       (net 64 "/POINTS_DA_OUT") (pintype "passive") (tstamp e0a4ee28-ba16-4102-97e9-e056891ab654))
-    (model "${KICAD6_3DMODEL_DIR}/Connector_RJ.3dshapes/RJ45_Amphenol_54602-x08_Horizontal.wrl"
-      (offset (xyz 0 0 0))
+    (model "/home/ndholmes/data/projects/ise-kicad/3DModels/RJ45_Amphenol_54602-908LF.step"
+      (offset (xyz 4.445 -6.35 0))
       (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
+      (rotate (xyz -90 0 0))
     )
   )
 
