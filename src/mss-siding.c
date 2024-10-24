@@ -185,10 +185,24 @@ int main(void)
 		initValue = i;
 	initDebounceState8(&optionsDebouncer, initValue);
 
+	// Convert global option bits to signal head option bits
+	if (initValue & OPTION_C_SEARCHLIGHT_MODE)
+		signalHeadOptions |= SIGNAL_OPTION_SEARCHLIGHT;
+	else 
+		signalHeadOptions &= ~SIGNAL_OPTION_SEARCHLIGHT;
+
+	if (initValue & OPTION_COMMON_ANODE)
+		signalHeadOptions |= SIGNAL_OPTION_COMMON_ANODE;
+	else 
+		signalHeadOptions &= ~SIGNAL_OPTION_COMMON_ANODE;
+
 	initValue = 0; // Default - all lines clear, turnout normal
 	if (readByte(TCA9555_ADDR_000, TCA9555_GPIN1, &i))
 		initValue = i;
 	initDebounceState8(&mssDebouncer, initValue);
+
+
+
 
 	sei();
 
