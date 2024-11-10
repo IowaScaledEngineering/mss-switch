@@ -9988,7 +9988,7 @@
   (gr_text "SIGNAL B" (at 71.882 123.571 180) (layer "F.SilkS") (tstamp 051639da-c7e6-4e06-bbfc-d0a086637d40)
     (effects (font (size 1.5 1.27) (thickness 0.3)))
   )
-  (gr_text "MSS-SIDING v1.1\nwww.iascaled.com\n©2024\nIowa Scaled Engineering" (at 91.567 159.639) (layer "F.SilkS") (tstamp 05763079-c3b4-4303-85f7-4934926ed9d4)
+  (gr_text "MSS-SWITCH v1.1\nwww.iascaled.com\n©2024\nIowa Scaled Engineering" (at 91.567 159.639) (layer "F.SilkS") (tstamp 05763079-c3b4-4303-85f7-4934926ed9d4)
     (effects (font (size 1.016 1.016) (thickness 0.1524)))
   )
   (gr_text "TURNOUT" (at 99.314 117.05475 180) (layer "F.SilkS") (tstamp 09bb51c4-acac-456b-b42f-e29889d5ee74)
