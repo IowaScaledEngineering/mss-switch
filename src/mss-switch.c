@@ -343,8 +343,6 @@ void calculateAspects(uint8_t mssInputs, uint8_t optionJumpers)
 	if (mssInputs & MSS_POINTS_S || !(mssInputs & MSS_TO_IS_DIVERGING))
 		aspectC = ASPECT_RED;
 	else if (mssInputs & MSS_POINTS_A_IN)
-		aspectC = ASPECT_YELLOW;
-	else if ((mssInputs & MSS_POINTS_AA_IN) && (optionJumpers & OPTION_B_FOUR_ASPECT))
 		aspectC = ASPECT_FL_YELLOW;
 	else
 		aspectC = ASPECT_GREEN;
