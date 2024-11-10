@@ -10108,7 +10108,7 @@
   (gr_text "UPPER" (at 27.559 126.111 270) (layer "F.SilkS") (tstamp 97751ad1-f2a2-4005-a8a2-377ee0f50848)
     (effects (font (size 1.5 1.016) (thickness 0.254)))
   )
-  (gr_text "6-24 Volts\nDC/AC/DCC " (at 69.088 189.357) (layer "F.SilkS") (tstamp a0b15e2b-ff3e-42ed-b7e0-a19fc9f6a69f)
+  (gr_text "8-24 Volts\nDC/AC/DCC " (at 69.088 189.357) (layer "F.SilkS") (tstamp a0b15e2b-ff3e-42ed-b7e0-a19fc9f6a69f)
     (effects (font (size 1.016 1.016) (thickness 0.1524)))
   )
   (gr_text "R" (at 29.845 162.179 270) (layer "F.SilkS") (tstamp a7f6cbfa-ca12-402b-9cdf-ab2daa533ba3)

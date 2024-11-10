@@ -1,5 +1,5 @@
 #*************************************************************************
-#Title:    MSS-CASCADE-BASIC Makefile
+#Title:    MSS-SWITCH Makefile
 #Authors:  Michael Petersen <railfan@drgw.net>
 #          Nathan Holmes <maverick@drgw.net>
 #License:  GNU General Public License v3
@@ -24,7 +24,7 @@
 #    
 #*************************************************************************
 
-BASE_NAME = mss-siding
+BASE_NAME = mss-switch
 
 DEVICE  = attiny861
 F_CPU   = 8000000  # Hz
