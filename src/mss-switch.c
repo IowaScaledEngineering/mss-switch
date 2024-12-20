@@ -138,7 +138,7 @@ int main(void)
 	//  PA4 - Output - A Lower Signal - RED
 	//  PA3 - Output - A Lower Signal - YELLOW
 	//  PA2 - I2C    - SCL
-	//  PA1 - Output - WS2812B
+	//  PA1 - Input  - Common Connection Sense
 	//  PA0 - I2C    - SDA
 
 	// PORT B
@@ -151,7 +151,7 @@ int main(void)
 	//  PB1 - Output - C Signal - GREEN
 	//  PB0 - Output - A Lower Signal - GREEN
 
-	PORTA = 0b11111101;
+	PORTA = 0b11111111;
 	DDRA  = 0b11111110;
 
 	PORTB = 0b11111111;
@@ -183,6 +183,10 @@ int main(void)
 	initValue = OPTION_COMMON_ANODE | OPTION_B_FOUR_ASPECT; // Default is common anode, four aspect
 	if (readByte(TCA9555_ADDR_000, TCA9555_GPIN0, &i))
 		initValue = i;
+	// In rev 1.1, common sense moved from the IO expander to GPIO
+	initValue &= ~(OPTION_COMMON_ANODE);
+	initValue |= ((PINA & 0x02)?OPTION_COMMON_ANODE:0);
+
 	initDebounceState8(&optionsDebouncer, initValue);
 
 	// Convert global option bits to signal head option bits
@@ -224,7 +228,12 @@ int main(void)
 			//  Note: readByte returns whether we got an ack
 			//  Only use the data on a valid read
 			if (readByte(TCA9555_ADDR_000, TCA9555_GPIN0, &i))
+			{
+				// In rev 1.1, common sense moved from the IO expander to GPIO
+				i &= ~(OPTION_COMMON_ANODE);
+				i |= ((PINA & 0x02)?OPTION_COMMON_ANODE:0);
 				debounce8(i, &optionsDebouncer);
+			}
 
 			if (readByte(TCA9555_ADDR_000, TCA9555_GPIN1, &i))
 				debounce8(i, &mssDebouncer);
@@ -348,6 +357,20 @@ void calculateAspects(uint8_t mssInputs, uint8_t optionJumpers)
 		aspectC = ASPECT_FL_YELLOW;
 	else
 		aspectC = ASPECT_GREEN;
+
+
+	// Handle approach lighting.  If we're approach lit, turn everything off unless there's
+	//  something in an adjacent block
+	if (optionJumpers & OPTION_A_APPROACH_LIGHTING)
+	{
+		if (!((mssInputs & MSS_POINTS_S) || (optionJumpers & MSS_APPROACH_LT_INPUT)))
+		{
+			// If nothing is in any of the adjacent blocks, turn signals off
+			aspectAL = aspectAU = aspectB = aspectC = ASPECT_OFF;
+		}
+	}
+
+
 
 	signalHeadAspectSet(&signalAU, aspectAU);
 	signalHeadAspectSet(&signalAL, aspectAL);
