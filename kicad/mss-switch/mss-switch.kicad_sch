@@ -6080,7 +6080,7 @@
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid ce4a5211-da48-437b-af8c-7edfb7c4c805)
   )
-  (label "POINTS_A_OUT" (at 400.05 181.61 0)
+  (label "POINTS_A_OUT_2" (at 400.05 181.61 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid cfca7a46-fb57-48dc-be18-2a1a2ceb893d)
   )
