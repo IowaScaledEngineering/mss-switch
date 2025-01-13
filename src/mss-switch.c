@@ -1,12 +1,12 @@
 /*************************************************************************
-Title:    MSS-CASCADE-BASIC
+Title:    MSS-SWITCH
 Authors:  Michael Petersen <railfan@drgw.net>
           Nathan D. Holmes <maverick@drgw.net>
 File:     $Id: $
 License:  GNU General Public License v3
 
 LICENSE:
-    Copyright (C) 2024 Michael Petersen & Nathan Holmes
+    Copyright (C) 2025 Michael Petersen & Nathan Holmes
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -253,7 +253,7 @@ int main(void)
 
 			lastMSSInputs = mssInputs;
 
-			// If you want to fake the optionJumper settings for testing, do it here
+			// If ou want to fake the optionJumper settings for testing, do it here
 			// optionJumpers |= OPTION_B_FOUR_ASPECT | OPTION_C_SEARCHLIGHT_MODE | OPTION_D_LIMIT_DIVERGING | OPTION_A_APPROACH_LIGHTING;
 
 			// Convert global option bits to signal head option bits
@@ -277,10 +277,11 @@ int main(void)
 				if (mssInputs & MSS_TO_IS_DIVERGING)
 					updateOutputs |= MSS_SET_ROUTE_RELAY;
 
-				if ((optionJumpers & OPTION_D_LIMIT_DIVERGING)
-					&& (mssInputs & MSS_TO_IS_DIVERGING) && !(mssInputs & MSS_POINTS_A_OUT) )
-					updateOutputs |= MSS_SET_FORCE_POINTS_AA;
-					
+				// If the points are set diverging and we're *NOT* going to display a stop
+				//  indication, set the approach diverging line
+				if ((mssInputs & MSS_TO_IS_DIVERGING) && !(mssInputs & MSS_POINTS_A_OUT))
+					updateOutputs |= MSS_SET_APPROACH_DIVERGING;
+				
 				writeByte(TCA9555_ADDR_000, TCA9555_GPOUT0, updateOutputs);
 			}
 
@@ -321,7 +322,7 @@ void calculateAspects(uint8_t mssInputs, uint8_t optionJumpers)
 		else if ((mssInputs & MSS_SIDING_AA_IN) && (optionJumpers & OPTION_B_FOUR_ASPECT))
 			aspectAL = ASPECT_FL_YELLOW;
 		else
-			aspectAL = ASPECT_GREEN;
+			aspectAL = ASPECT_GREEN;			
 
 	} else {
 		aspectAL = ASPECT_RED;
