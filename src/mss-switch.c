@@ -222,6 +222,7 @@ int main(void)
 		{
 			uint8_t optionJumpers = 0;
 			uint8_t mssInputs = 0;
+			bool turnoutChanged = false;
 			lastReadTime = currentTime;
 
 			// Read PCA9555
@@ -249,8 +250,10 @@ int main(void)
 			optionJumpers ^= 0b00111110;
 
 			if ((lastMSSInputs ^ mssInputs) & MSS_TO_IS_DIVERGING)
+			{
 				turnoutChangeLockout = (TURNOUT_LOCKOUT_TIME_MS) / (LOOP_UPDATE_TIME_MS);
-
+				turnoutChanged = true;
+			}
 			lastMSSInputs = mssInputs;
 
 			// If ou want to fake the optionJumper settings for testing, do it here
@@ -279,8 +282,33 @@ int main(void)
 
 				// If the points are set diverging and we're *NOT* going to display a stop
 				//  indication, set the approach diverging line
+
+				if (turnoutChanged)
+				{
+					// If the turnout just flopped over, we don't want to glitch and send the wrong
+					//  approach diverging.  So we're going to write the new relay state, wait about 5 time constants
+					//  and then read the MSS bus state and make that the current state
+					
+					// Set the relay driver appropriately
+					writeByte(TCA9555_ADDR_000, TCA9555_GPOUT0, updateOutputs);
+
+					_delay_ms(5); //  Wait 5ms - plenty of time constants to stabilize
+
+					// Read four times to get the new input values
+					if (readByte(TCA9555_ADDR_000, TCA9555_GPIN1, &i))
+						debounce8(i, &mssDebouncer);
+					if (readByte(TCA9555_ADDR_000, TCA9555_GPIN1, &i))
+						debounce8(i, &mssDebouncer);
+					if (readByte(TCA9555_ADDR_000, TCA9555_GPIN1, &i))
+						debounce8(i, &mssDebouncer);
+					if (readByte(TCA9555_ADDR_000, TCA9555_GPIN1, &i))
+						debounce8(i, &mssDebouncer);
+					mssInputs = getDebouncedState(&mssDebouncer);
+				}
+
 				if ((mssInputs & MSS_TO_IS_DIVERGING) && !(mssInputs & MSS_POINTS_A_OUT))
 					updateOutputs |= MSS_SET_APPROACH_DIVERGING;
+
 				
 				writeByte(TCA9555_ADDR_000, TCA9555_GPOUT0, updateOutputs);
 			}
