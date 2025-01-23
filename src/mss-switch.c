@@ -152,7 +152,7 @@ int main(void)
 	//  PB0 - Output - A Lower Signal - GREEN
 
 	PORTA = 0b11111111;
-	DDRA  = 0b11111110;
+	DDRA  = 0b11111100;
 
 	PORTB = 0b11111111;
 	DDRB  = 0b01111111;
