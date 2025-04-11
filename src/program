@@ -14,7 +14,7 @@ do
 	espeak "Programming"
 
 	make fuse
-	make firmware HEX=release/mss-switch-bcd27cd3-19Jan2025.hex
+	make firmware HEX=release/mss-switch-b14d8003-23Jan2025.hex
 
 
 	if [ $? -eq 0 ]
