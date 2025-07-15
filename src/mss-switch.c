@@ -336,21 +336,23 @@ void calculateAspects(uint8_t mssInputs, uint8_t optionJumpers)
 	// Calculate signal aspects directly, since we don't have neatly-terminated
 	//  MSS busses but rather have to glean states from combinations of things.
 
+	// This is a special version that only operates the upper head for the points signal
+
 	// SIGNAL A - Points End
 
 	if (mssInputs & MSS_TO_IS_DIVERGING)
 	{
 		// Diverging point end signals
-		aspectAU = ASPECT_RED;
+		aspectAL = ASPECT_RED;
 	
 		if (mssInputs & MSS_POINTS_A_OUT)
-			aspectAL = ASPECT_RED;
+			aspectAU = ASPECT_RED;
 		else if ((mssInputs & MSS_POINTS_AA_OUT) || (optionJumpers & OPTION_D_LIMIT_DIVERGING))
-			aspectAL = ASPECT_YELLOW;
+			aspectAU = ASPECT_YELLOW;
 		else if ((mssInputs & MSS_SIDING_AA_IN) && (optionJumpers & OPTION_B_FOUR_ASPECT))
-			aspectAL = ASPECT_FL_YELLOW;
+			aspectAU = ASPECT_FL_YELLOW;
 		else
-			aspectAL = ASPECT_GREEN;			
+			aspectAU = ASPECT_GREEN;
 
 	} else {
 		aspectAL = ASPECT_RED;
@@ -387,7 +389,6 @@ void calculateAspects(uint8_t mssInputs, uint8_t optionJumpers)
 	else
 		aspectC = ASPECT_GREEN;
 
-
 	// Handle approach lighting.  If we're approach lit, turn everything off unless there's
 	//  something in an adjacent block
 	if (optionJumpers & OPTION_A_APPROACH_LIGHTING)
@@ -398,8 +399,6 @@ void calculateAspects(uint8_t mssInputs, uint8_t optionJumpers)
 			aspectAL = aspectAU = aspectB = aspectC = ASPECT_OFF;
 		}
 	}
-
-
 
 	signalHeadAspectSet(&signalAU, aspectAU);
 	signalHeadAspectSet(&signalAL, aspectAL);
