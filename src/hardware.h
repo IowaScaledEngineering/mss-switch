@@ -45,7 +45,7 @@ LICENSE:
 //  IO01 - Input  - Option Switch A
 //  IO00 - Input  - Signal Common Sense
 
-#define OPTION_COMMON_ANODE          0x01
+#define MSS_APPROACH_LT_INPUT        0x01
 #define OPTION_A_APPROACH_LIGHTING   0x02
 #define OPTION_B_FOUR_ASPECT         0x04
 #define OPTION_C_SEARCHLIGHT_MODE    0x08
@@ -53,7 +53,7 @@ LICENSE:
 #define OPTION_E_RESERVED            0x20
 #define MSS_SET_FORCE_POINTS_AA      0x40
 #define MSS_SET_ROUTE_RELAY          0x80
-
+#define OPTION_COMMON_ANODE          0x80
 
 // TCA9555 - GPIO 1
 //  IO17 - Input  - Main AA In
