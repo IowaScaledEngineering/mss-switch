@@ -352,7 +352,7 @@ void calculateAspects(uint8_t mssInputs, uint8_t optionJumpers)
 		else if ((mssInputs & MSS_SIDING_AA_IN) && (optionJumpers & OPTION_B_FOUR_ASPECT))
 			aspectAU = ASPECT_FL_YELLOW;
 		else
-			aspectAU = ASPECT_GREEN;
+			aspectAU = ASPECT_YELLOW;
 
 	} else {
 		aspectAL = ASPECT_RED;
